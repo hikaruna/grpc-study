@@ -1,0 +1,13 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@grpc/proto-loader": "^0.5.4",
+    "google-protobuf": "^3.11.4",
+    "grpc": "^1.24.2",
+    "grpc-web": "^1.0.7"
+  }
+}

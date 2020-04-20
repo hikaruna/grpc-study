@@ -1,28 +1,10 @@
 import grpc from 'grpc';
 import protoLoader from '@grpc/proto-loader';
-
-const packageDefinition = protoLoader.loadSync(
-  './echo.proto',
-  {
-    keepCase: true,
-    longs: String,
-    enums: String,
-    defaults: true,
-    oneofs: true
-  }
-);
-
-var protoDescriptor = grpc.loadPackageDefinition(packageDefinition);
-var echo = protoDescriptor.echo;
-
-function doEcho(call, callback) {
-  callback(null, { message: `${call.request.message}!!!!` });
-}
+import EchoServiceImpl from './EchoService.js'
+import { EchoService } from './EchoStub.js'
 
 const server = new grpc.Server();
-server.addService(echo.EchoService.service, {
-  echo: doEcho
-});
+server.addService(EchoService.service, new EchoServiceImpl());
 
 server.bindAsync(
   '0.0.0.0:9090',

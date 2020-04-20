@@ -1,5 +1,11 @@
 version: '3.7'
 services:
+  dev:
+    image: node
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: [ "sleep", "infinity" ]
   server:
     image: node
     volumes:
@@ -10,3 +16,7 @@ services:
     command: 
       - node
       - node-server.js
+  protoc:
+    build:
+      context: .
+      target: protoc

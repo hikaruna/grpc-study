@@ -10,6 +10,11 @@ message EchoResponse {
   string message = 1;
 }
 
+message Void {
+}
+
 service EchoService {
-  rpc Echo(EchoRequest) returns (EchoResponse);
+  rpc Echo(EchoRequest) returns (EchoResponse) {}
+  rpc Join(Void) returns (stream EchoResponse) {}
+  rpc Write(EchoRequest) returns (Void) {}
 }

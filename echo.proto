@@ -13,7 +13,7 @@ message EchoResponse {
 message Void {
 }
 
-service EchoService {
+service Echo {
   rpc Echo(EchoRequest) returns (EchoResponse) {}
   rpc Join(Void) returns (stream EchoResponse) {}
   rpc Write(EchoRequest) returns (Void) {}

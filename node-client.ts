@@ -1,13 +1,13 @@
-const grpc = require('grpc');
-const { EchoClient } = require('./grpc_tools_node_protoc_ts/echo_grpc_pb')
-const { EchoRequest, EchoResponse } = require('./grpc_tools_node_protoc_ts/echo_pb')
+import grpc from 'grpc';
+import { EchoClient } from './grpc_tools_node_protoc_ts/echo_grpc_pb'
+import { EchoRequest, EchoResponse } from './grpc_tools_node_protoc_ts/echo_pb'
 
 const client = new EchoClient(
   'localhost:9090',
   grpc.credentials.createInsecure()
 );
 
-const buildEchoRequest = ({message}) => {
+const buildEchoRequest = ({message}: { message: string}): EchoRequest => {
   const build = new EchoRequest();
   build.setMessage(message);
   return build;

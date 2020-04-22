@@ -1,15 +1,15 @@
 version: '3.7'
 services:
   dev:
-    image: node
+    image: node:lts
     volumes:
-      - .:/app
+      - .:/app:delegated
     working_dir: /app
     command: [ "sleep", "infinity" ]
   server:
-    image: node
+    image: node:lts
     volumes:
-      - .:/app
+      - .:/app:delegated
     working_dir: /app
     ports:
       - 9090:9090
@@ -20,3 +20,50 @@ services:
     build:
       context: .
       target: protoc
+    volumes:
+      - .:/app
+    working_dir: /app
+    entrypoint: []
+  grpc_tools_node_protoc_ts:
+    build:
+      context: .
+      target: grpc_tools_node_protoc_ts
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: 
+      - grpc_tools_node_protoc
+      - -I.
+      - echo.proto
+      - --js_out=import_style=commonjs:grpc_tools_node_protoc_ts
+      - --grpc_out=grpc_tools_node_protoc_ts
+      - --ts_out=grpc_tools_node_protoc_ts
+  ts-protoc-gen-node:
+    build:
+      context: .
+      target: ts-protoc-gen
+    volumes:
+      - .:/app
+    working_dir: /app
+    command:
+      - grpc_tools_node_protoc
+      - -I.
+      - echo.proto
+      - --js_out=import_style=commonjs:ts-protoc-gen-node
+      - --grpc_out=ts-protoc-gen-node
+      - --ts_out=service=grpc-node:ts-protoc-gen-node
+
+  ts-protoc-gen-web:
+    build:
+      context: .
+      target: ts-protoc-gen
+    volumes:
+      - .:/app
+    working_dir: /app
+    command:
+      - grpc_tools_node_protoc
+      - -I.
+      - echo.proto
+      - --js_out=import_style=commonjs:ts-protoc-gen-web
+      - --grpc_out=ts-protoc-gen-web
+      - --ts_out=service=grpc-web:ts-protoc-gen-web

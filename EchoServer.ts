@@ -10,6 +10,9 @@ export class EchoServer implements IEchoServer {
 
   echo (message: string): string {
     this.messages.push(message)
+    this.users.forEach(user => {
+      user(message)
+    })
     return message
   }
 
@@ -19,5 +22,10 @@ export class EchoServer implements IEchoServer {
 
   write (message: string) {
     this.messages.push(message)
+    console.dir(`write: users: ${this.users}`)
+    console.dir(this.users)
+    this.users.forEach(user => {
+      user(message)
+    })
   }
 }

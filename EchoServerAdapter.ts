@@ -19,11 +19,15 @@ export default class EchoServerAdapter implements IGrpcEchoServer {
 
   join (call: ServerWritableStream<Void>) {
     this.adapted.join((message: string) => {
-      call.write(message)
+      console.debug("on receive callback called")
+      const response = new EchoResponse();
+      response.setMessage(message)
+      call.write(response)
     });
   }
 
   write (call: ServerUnaryCall<EchoRequest>, callback: sendUnaryData<Void>) {
+    console.debug('EchoServerAdapter#write called')
     this.adapted.write(call.request.getMessage());
     callback(null, new Void());
   }

@@ -3,7 +3,7 @@ import { EchoClient } from './grpc_tools_node_protoc_ts/echo_grpc_pb'
 import { EchoRequest, EchoResponse } from './grpc_tools_node_protoc_ts/echo_pb'
 
 const client = new EchoClient(
-  'localhost:9090',
+  'node-server:9090',
   grpc.credentials.createInsecure()
 );
 

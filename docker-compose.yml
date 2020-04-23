@@ -16,14 +16,19 @@ services:
     command: 
       - node
       - node-server.js
-  protoc:
+  protoc-gen-grpc-web:
     build:
       context: .
-      target: protoc
+      target: protoc-gen-grpc-web
     volumes:
       - .:/app
     working_dir: /app
-    entrypoint: []
+    command:
+      - protoc
+      - -I=.
+      - echo.proto
+      - --js_out=import_style=commonjs,binary:protoc-gen-grpc-web
+      - --grpc-web_out=import_style=typescript,mode=grpcwebtext:protoc-gen-grpc-web 
   grpc_tools_node_protoc_ts:
     build:
       context: .

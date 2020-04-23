@@ -11,12 +11,7 @@ services:
     command: 
       - yarn
       - run
-      - parcel
-      - serve
-      - --no-cache
-      - --hmr-port
-      - "36533"
-      - index.html
+      - webpack-dev-server
   node-server:
     image: node:lts
     volumes:

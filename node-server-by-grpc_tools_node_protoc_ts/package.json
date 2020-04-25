@@ -1,0 +1,16 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "ts-node": "^8.9.0",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "@types/google-protobuf": "^3.7.2",
+    "google-protobuf": "^3.11.4",
+    "grpc": "^1.24.2"
+  }
+}

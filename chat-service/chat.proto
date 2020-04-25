@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+service Chat {
+  rpc getMessages(Void) returns (Messages);
+}
+
+message Void {
+}
+
+message Messages {
+  repeated Message messages = 1;
+}
+
+message Message {
+  string body = 1;
+  string userId = 2;
+}

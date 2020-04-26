@@ -4,7 +4,7 @@ import { ChatServer } from './src/ChatServer';
 
 const server = new Server();
 server.addService(ChatService, new ChatServer());
-if (server.bind('9090', ServerCredentials.createInsecure()) === 0) {
+if (server.bind('0.0.0.0:9090', ServerCredentials.createInsecure()) === 0) {
   throw new Error('bind error');
 }
 server.start();

@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  protoc:
+    build:
+      context: .
+      target: protoc
+    volumes:
+      - .:/app
+      - ../chat-service:/tmp/chat-service
+    working_dir: /app
+    command:
+      - --proto_path=/tmp/chat-service
+      - /tmp/chat-service/chat.proto
+      - --plugin=protoc-gen-ts=/usr/local/bin/protoc-gen-ts
+      - --grpc_out=./lib/chat-service/
+      - --js_out=import_style=commonjs:./lib/chat-service/
+      - --ts_out=./lib/chat-service/

@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+/usr/bin/env node -r "ts-node/register" "$(dirname $(realpath $0))/src/main.ts" $@

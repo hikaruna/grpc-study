@@ -1,6 +1,6 @@
 import { Server, ServerCredentials } from 'grpc'
-import { ChatService } from './lib/chat-service/chat_grpc_pb';
-import { ChatServer } from './src/ChatServer';
+import { ChatService } from '../lib/chat-service/chat_grpc_pb';
+import { ChatServer } from './ChatServer';
 import { program } from 'commander';
 
 program
